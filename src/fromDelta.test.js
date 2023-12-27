@@ -13,7 +13,7 @@ test('renders inline format', function() {
         insert: 'mom',
       },
     ])
-  ).toEqual('Hi **mom**\n')
+  ).toEqual('Hi *mom*')
 })
 
 test('renders embed format', function() {
@@ -26,7 +26,7 @@ test('renders embed format', function() {
         insert: {image: 'https://placekitten.com/g/200/300'},
       },
     ])
-  ).toEqual('LOOK AT THE KITTEN!\n![](https://placekitten.com/g/200/300)\n')
+  ).toEqual('LOOK AT THE KITTEN!\nhttps://placekitten.com/g/200/300')
 })
 
 test('encodes image url', function() {
@@ -39,7 +39,7 @@ test('encodes image url', function() {
         insert: {image: 'https://placekitten.com/g/200/300(1).jpg'},
       },
     ])
-  ).toEqual('LOOK AT THE KITTEN!\n![](https://placekitten.com/g/200/300%281%29.jpg)\n')
+  ).toEqual('LOOK AT THE KITTEN!\nhttps://placekitten.com/g/200/300%281%29.jpg')
 })
 
 test('removes download params for images', function () {
@@ -52,7 +52,7 @@ test('removes download params for images', function () {
         insert: {image: 'https://placekitten.com/g/200/300?params=21312321313&response-content-disposition=attachment; filename=300.jpg'},
       },
     ])
-  ).toEqual('LOOK AT THE KITTEN!\n![](https://placekitten.com/g/200/300?params=21312321313)\n')
+  ).toEqual('LOOK AT THE KITTEN!\nhttps://placekitten.com/g/200/300?params=21312321313')
 })
 
 test('renders block format', function() {
@@ -68,7 +68,7 @@ test('renders block format', function() {
         insert: '\n',
       },
     ])
-  ).toEqual('# Headline\n')
+  ).toEqual('# Headline')
 })
 
 test('renders lists with inline formats correctly', function() {
@@ -106,7 +106,7 @@ test('renders lists with inline formats correctly', function() {
       },
     ])
   ).toEqual(
-    '1. _Glenn v. Brumby_, 663 F.3d 1312 (11th Cir. 2011)\n2. _Barnes v. City of Cincinnati_, 401 F.3d 729 (6th Cir. 2005)\n'
+    '1. _Glenn v. Brumby_, 663 F.3d 1312 (11th Cir. 2011)\n2. _Barnes v. City of Cincinnati_, 401 F.3d 729 (6th Cir. 2005)'
   )
 })
 
@@ -169,7 +169,7 @@ test('renders adjacent lists correctly', function() {
       },
     ])
   ).toEqual(
-    '1. Item 1\n2. Item 2\n3. Item 3\n\nIntervening paragraph\n1. Item 4\n2. Item 5\n3. Item 6\n'
+    '1. Item 1\n2. Item 2\n3. Item 3\n\nIntervening paragraph\n1. Item 4\n2. Item 5\n3. Item 6'
   )
 })
 
@@ -197,8 +197,7 @@ test('renders adjacent inline formats correctly', function() {
       },
     ])
   ).toEqual(
-    '_Italics! [Italic link](http://example.com)_[ regular link](http://example.com)' +
-      '\n'
+    '_Italics! <Italic link|http://example.com>_< regular link|http://example.com>'
   )
 });
 
@@ -224,7 +223,7 @@ test('renders checkboxes correctly', function() {
         insert: "\n"
       }
     ])
-  ).toEqual('- [ ] milk\n- [x] cheese\n')
+  ).toEqual('- [ ] milk\n- [x] cheese')
 })
 
 test('render an inline link', function() {
@@ -237,7 +236,7 @@ test('render an inline link', function() {
         },
       },
     ])
-  ).toEqual('[Go to Google](https://www.google.fr)' + '\n')
+  ).toEqual('<Go to Google|https://www.google.fr>')
 })
 
 test('renders a separator block', function() {
@@ -253,5 +252,5 @@ test('renders a separator block', function() {
         insert: 'After\n',
       },
     ])
-  ).toEqual('Before' + '\n' + '\n' + '---' + '\n' + 'After' + '\n')
+  ).toEqual('Before' + '\n' + '\n' + '---' + '\n' + 'After')
 });

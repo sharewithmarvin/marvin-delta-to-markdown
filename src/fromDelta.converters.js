@@ -4,7 +4,7 @@ const { encodeLink } = require('./utils/URL');
 module.exports = {
   embed: {
     image: function(src) {
-      this.append('![](' + encodeLink(src) + ')');
+      this.append(encodeLink(src));
     },
     // Not a default Quill feature, converts custom divider embed blot added when
     // creating quill editor instance.
@@ -19,10 +19,13 @@ module.exports = {
       return ['_', '_'];
     },
     bold: function() {
-      return ['**', '**'];
+      return ['*', '*'];
     },
     link: function(url) {
-      return ['[', '](' + url + ')'];
+      return ['<', '|' + url + '>'];
+    },
+    strike: function() {
+      return ['~', '~'];
     },
   },
 
@@ -39,7 +42,7 @@ module.exports = {
       },
       line: function(attrs, group) {
         if (attrs.list === 'bullet') {
-          this.open = '- ' + this.open;
+          this.open = '• ' + this.open;
         } else if (attrs.list === "checked") {
           this.open = '- [x] ' + this.open;
         } else if (attrs.list === "unchecked") {
