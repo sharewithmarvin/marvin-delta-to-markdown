@@ -12,6 +12,9 @@ module.exports = {
     thematic_break: function() {
       this.open = '\n---\n' + this.open;
     },
+    mention: function({index: string, id: string, denotationChar: string, value: string}) {
+      this.append(denotationChar+value);
+    }
   },
 
   inline: {
