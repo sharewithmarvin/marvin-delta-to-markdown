@@ -1,6 +1,6 @@
 {
   "name": "marvin-delta-to-markdown",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "public": true,
   "description": "Convert from Quill Delta to Markdown which is understandable by Slack Social Media Platform",
   "main": "index.js",
